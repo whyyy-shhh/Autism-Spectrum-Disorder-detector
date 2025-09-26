@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Prediction</title>
+    <style>
+        /* style.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Autism Prediction</h1>
+        <form action="/predict" method="post">
+            <!-- Dropdowns for A1_Score to A10_Score -->
+            <label for="A1_Score">A1_Score:</label>
+            <select name="A1_Score" id="A1_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A2_Score">A2_Score:</label>
+            <select name="A2_Score" id="A2_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A3_Score">A3_Score:</label>
+            <select name="A3_Score" id="A3_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A4_Score">A4_Score:</label>
+            <select name="A4_Score" id="A4_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A5_Score">A5_Score:</label>
+            <select name="A5_Score" id="A5_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A6_Score">A6_Score:</label>
+            <select name="A6_Score" id="A6_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A7_Score">A7_Score:</label>
+            <select name="A7_Score" id="A7_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A8_Score">A8_Score:</label>
+            <select name="A8_Score" id="A8_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A9_Score">A9_Score:</label>
+            <select name="A9_Score" id="A9_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label for="A10_Score">A10_Score:</label>
+            <select name="A10_Score" id="A10_Score" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <!-- Dropdown for Gender -->
+            <label for="Gender">Gender:</label>
+            <select name="Gender" id="Gender" required>
+                <option value="m">Male</option>
+                <option value="f">Female</option>
+            </select>
+
+            <label for="Ethnicity">Ethnicity:</label>
+            <select name="Ethnicity" id="Ethnicity" required>
+                <option value="Asian">Asian</option>
+                <option value="African">African</option>
+                <option value="Others">Others</option>
+                <option value="White-European">White-European</option>
+                <option value="Latino">Latino</option>
+            </select>
+
+            <label for="Jundice">Jundice:</label>
+            <select name="Jundice" id="Jundice" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <!-- Moved Autism after Jundice -->
+            <label for="Autism">Autism:</label>
+            <select name="Autism" id="Autism" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label for="Country_of_res">Country of Residence:</label>
+            <select name="Country_of_res" id="Country_of_res" required>
+                <option value="Egypt">Egypt</option>
+                <option value="Brazil">Brazil</option>
+                <option value="India">India</option>
+                <option value="Spain">Spain</option>
+                <option value="Australia">Australia</option>
+                <option value="United States">United States</option>
+            </select>
+
+            <label for="Used_app_before">Used App Before:</label>
+            <select name="Used_app_before" id="Used_app_before" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label for="Relation">Relation:</label>
+            <select name="Relation" id="Relation" required>
+                <option value="Self">Self</option>
+                <option value="Relative">Relative</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction_text %}
+            <h2>{{ prediction_text }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
